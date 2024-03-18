@@ -1,6 +1,5 @@
 node("dev"){
-    stages{
-        stage("build"){
+    stage("build"){
         steps{
             echo "this is build"
         }
@@ -19,6 +18,5 @@ node("dev"){
         steps{
             echo "deployment sucessfull"
         }
-    }
     }
 }
