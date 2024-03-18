@@ -1,24 +1,29 @@
-node("dev"){
-    stages{
-        stage("build"){
-        steps{
-            echo "this is build"
+node {
+    stage("build") {
+        echo "This is build"
+    }
+    
+    stage("test") {
+        echo "This is test"
+    }
+    
+    stage("confirm") {
+        try {
+            // Prompt user for input
+            userInput = input(message: 'Do you want to proceed?', parameters: [booleanParam(defaultValue: true, description: 'Proceed?', name: 'proceed')])
+            
+            // Check user input
+            if (userInput) {
+                echo "User chose to proceed"
+            } else {
+                error("User chose not to proceed. Terminating pipeline.")
+            }
+        } catch (err) {
+            error("Error occurred: ${err}")
         }
     }
-    stage("test"){
-        steps{
-            echo "this is test"
-        }
-    }
-    stage("confirm"){
-        steps{
-            input message: "Shall I proceed with this build?"
-        }
-    }
-    stage("deploy"){
-        steps{
-            echo "deployment sucessfull"
-        }
-    }
+    
+    stage("deploy") {
+        echo "Deployment successful"
     }
 }
