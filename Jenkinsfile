@@ -13,13 +13,13 @@ node {
             userInput = input(message: 'Do you want to proceed?', parameters: [booleanParam(defaultValue: true, description: 'Proceed?', name: 'proceed')])
             
             // Check user input
-            if (userInput) {
-                echo "User chose to proceed"
-            } else {
-                error("User chose not to proceed. Terminating pipeline.")
+            if (!userInput) {
+                echo "User chose not to proceed. Aborting pipeline."
+                return // Exit the stage and abort pipeline
             }
         } catch (err) {
-            error("Error occurred: ${err}")
+            echo "Error occurred: ${err}. Aborting pipeline."
+            return // Exit the stage and abort pipeline
         }
     }
     
