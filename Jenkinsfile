@@ -1,29 +1,24 @@
-pipeline {
-    agent any
-    
-    stages {
-        stage('Step 1') {
-            steps {
-                echo 'Executing Step 1'
-            }
+node("dev"){
+    stages{
+        stage("build"){
+        steps{
+            echo "this is build"
         }
-        
-        stage('Step 2') {
-            steps {
-                echo 'Executing Step 2'
-            }
+    }
+    stage("test"){
+        steps{
+            echo "this is test"
         }
-        
-        stage('Step 3') {
-            steps {
-                input("shall i proceed")
-            }
+    }
+    stage("confirm"){
+        steps{
+            input("shall i proceed with this build")
         }
-        
-        stage('Step 4') {
-            steps {
-                echo 'Executing Step 4'
-            }
+    }
+    stage("deploy"){
+        steps{
+            echo "deployment sucessfull"
         }
+    }
     }
 }
