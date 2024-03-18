@@ -23,7 +23,11 @@ node {
         }
     }
     
-    stage("deploy") {
-        echo "Deployment successful"
+    if (userInput) {
+        stage("deploy") {
+            echo "Deployment successful"
+        }
+    } else {
+        echo "Skipping deployment as user chose not to proceed."
     }
 }
