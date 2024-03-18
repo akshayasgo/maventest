@@ -21,7 +21,7 @@ pipeline {
                         id: 'userInput', 
                         message: 'Do you want to proceed?', 
                         parameters: [
-                            [$class: 'BooleanParameterDefinition', defaultValue: true, description: 'Proceed?']
+                            booleanParam(defaultValue: true, description: 'Proceed?')
                         ]
                     )
                     
