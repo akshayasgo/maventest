@@ -1,5 +1,6 @@
 node("dev"){
-    stage("build"){
+    stages{
+        stage("build"){
         steps{
             echo "this is build"
         }
@@ -11,12 +12,13 @@ node("dev"){
     }
     stage("confirm"){
         steps{
-            input("shall i proceed with this build")
+            input message: "Shall I proceed with this build?"
         }
     }
     stage("deploy"){
         steps{
             echo "deployment sucessfull"
         }
+    }
     }
 }
